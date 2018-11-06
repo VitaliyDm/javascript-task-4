@@ -56,7 +56,7 @@ function getEmitter() {
         emit: function (event) {
             const executeOrder = [];
             Array.from(events.keys()).forEach(item => {
-                if (`${item}.` === `${event}.` || `${event}.`.startsWith(`${item}`)) {
+                if (`${item}.` === `${event}.` || `${event}.`.startsWith(`${item}.`)) {
                     executeOrder.push(item);
                 }
             });
