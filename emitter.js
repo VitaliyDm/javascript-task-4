@@ -54,11 +54,14 @@ function getEmitter() {
          * @returns {Object}
          */
         emit: function (event) {
+            const executeOrder = [];
             Array.from(events.keys()).forEach(item => {
                 if (`${item}.` === `${event}.` || `${event}.`.startsWith(`${item}`)) {
-                    events.get(item).forEach(act => act.handler.apply(act.context));
+                    executeOrder.push(item);
                 }
             });
+            executeOrder.sort().reverse()
+                .forEach(item => events.get(item).forEach(act => act.handler.apply(act.context)));
 
             return this;
         },
