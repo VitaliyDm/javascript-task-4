@@ -61,7 +61,7 @@ function getEmitter() {
                 }
             });
             executeOrder.sort().reverse()
-                .forEach(item => events.get(item).forEach(act => act.handler.apply(act.context)));
+                .forEach(item => events.get(item).forEach(act => act.handler.call(act.context)));
 
             return this;
         },
